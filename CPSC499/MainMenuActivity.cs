@@ -36,7 +36,9 @@ namespace CPSC499
             {
                 //Toast.MakeText(Application, ((TextView)args.View).Text, ToastLength.Short).Show();
                 if (((TextView)args.View).Text == "Scan Cases") {
-                    Intent intent = new Intent(this, typeof(ScanCasesActivity));
+                   // Intent intent = new Intent(this, typeof(ScanCasesActivity));
+                    Intent intent = new Intent(this, typeof(scanCases2Activity));
+
                     StartActivity(intent);
                 }
             };
