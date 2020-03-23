@@ -92,7 +92,7 @@ namespace CPSC499
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }

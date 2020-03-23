@@ -189,5 +189,10 @@
             p1:id="@+id/btnUndo" />
 
     </LinearLayout>
+    <EDMTDev.ZXingXamarinAndroid.ZXingScannerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/qrBOL"
+        />
     
 </LinearLayout>

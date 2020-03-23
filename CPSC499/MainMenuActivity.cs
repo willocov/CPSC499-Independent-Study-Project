@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
+using Android.Runtime;                                                                  
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
@@ -20,7 +20,7 @@ namespace CPSC499
     {
         //Screen Object Variables
 
-        string connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
+        //string connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
 
         string[] mainMenuItems = {"Scan Cases", "Active BOL", "Manage Barcodes" };
 
