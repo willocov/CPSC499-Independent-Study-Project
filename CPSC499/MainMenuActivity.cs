@@ -22,11 +22,29 @@ namespace CPSC499
 
         //string connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
 
-        string[] mainMenuItems = {"Scan Cases", "Active BOL", "Manage Barcodes" };
+        string[] mainMenuItemsBasic = { "Scan Cases", "Active BOL" };
+        string[] mainMenuItemsSuper = { "Scan Cases", "Active BOL", "Manage BOL" };
+        string[] mainMenuItemsAdmin = { "Scan Cases", "Active BOL", "Manage BOL", "Manage Barcodes", "Manage Scans" };
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            string[] mainMenuItems;
+            switch (MainActivity.UserLevel) {
+                case 1:
+                    mainMenuItems = mainMenuItemsBasic;
+                    break;
+                case 2:
+                    mainMenuItems = mainMenuItemsSuper;
+                    break;
+                case 3:
+                    mainMenuItems = mainMenuItemsAdmin;
+                    break;
+                default:
+                    mainMenuItems = mainMenuItemsBasic;
+                    break;
+            }
 
             ListAdapter = new ArrayAdapter<string>(this, Resource.Layout.MainMenu, mainMenuItems);  
 

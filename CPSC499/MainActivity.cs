@@ -133,7 +133,7 @@ namespace CPSC499
                     }
                 }
             }
-            catch(Exception ex)
+            catch
             {
                 res.setIsSuccess(false);
                 res.setUserLevel(0);
