@@ -116,7 +116,7 @@ namespace CPSC499
                 Android.Support.V7.App.AlertDialog.Builder alertDiag = new Android.Support.V7.App.AlertDialog.Builder(this);
                 alertDiag.SetTitle("Confirm delete");
                 alertDiag.SetMessage("Would you like to delete the last scan?");
-                alertDiag.SetPositiveButton("Yes", (senderAlert, args) => {
+                alertDiag.SetPositiveButton("Yes", (senderAlert, cargs) => {
                     Toast.MakeText(this, "Undoing Last Scan", ToastLength.Short).Show();
                 });
                 alertDiag.SetNegativeButton("Yes", (senderAlert, args) => {

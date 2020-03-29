@@ -21,10 +21,46 @@ namespace CPSC499
         //Connection String When At Home
         string connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
         //string connectionString = @"Server=10.67.87.20;Database=CPSC499;User Id=cpsc499;Password=test;";
+        enum USERLEVEL { NONE = 0, BASIC = 1, SUPERVISOR = 2, ADMIN = 3};
 
+        public static int UserLevel { get; set; }
+        public class LoginResults {
+            private bool isSuccess;
+            private int userLevel;
+
+            public void setIsSuccess(bool input) {
+
+                try
+                {
+                    isSuccess = input;
+                }
+                catch (Exception ex) {
+                    throw new Exception("Error Occured While Setting Success Level: " + ex);
+                }
+            }
+
+            public bool getIsSuccess() {
+                return isSuccess;
+            }
+
+            public void setUserLevel(int input) {
+                try
+                {
+                    userLevel = input;
+                }
+                catch (Exception ex) {
+                    throw new Exception("Error Occured While Setting User Level: " + ex);
+                }
+            }
+
+            public int getUserLevel() {
+                return userLevel;
+            }
+        };
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
@@ -35,17 +71,19 @@ namespace CPSC499
             passwordTextBox = (EditText)FindViewById(Resource.Id.EditTextPassword);
             loginButton.Click += (sender, e) =>
             {
-                /*
+                
                 string userName = usernameTextBox.Text;
                 string password = passwordTextBox.Text;
-
-                bool loginResult = false;
-                loginResult = Login(userName, password);
+                LoginResults results = new LoginResults();
+                results = Login(userName, password);
                 
-                if (loginResult)
+                if (results.getIsSuccess())
                 {
                     //Launch New Page to Main Menu
+                    Vibration.Vibrate();
                     Intent intent = new Intent(this, typeof(MainMenuActivity));
+                    UserLevel = results.getUserLevel();
+                    intent.PutExtra("Myitem", UserLevel);
                     StartActivity(intent);
                 }
                 else
@@ -53,12 +91,12 @@ namespace CPSC499
                     //Display error Message.
                     Toast.MakeText(ApplicationContext, "Login Failed.", ToastLength.Long).Show();
                 }
-                */
+                
 
                 //Skips user validation to speed up testing.
-                Vibration.Vibrate();
-                Intent intent = new Intent(this, typeof(MainMenuActivity));
-                StartActivity(intent);
+                //Vibration.Vibrate();
+                //Intent intent = new Intent(this, typeof(MainMenuActivity));
+                //StartActivity(intent);
 
             };
         }
@@ -68,10 +106,10 @@ namespace CPSC499
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        private bool Login(string username, string password)
+        private LoginResults Login(string username, string password)
         {
             //Launch SQL Connection in a New Thread.
-            int loginSuccess = 0;
+            LoginResults res = new LoginResults();
 
             try
             {
@@ -82,25 +120,27 @@ namespace CPSC499
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.Add("@Username", SqlDbType.NVarChar).Value = username;
                         cmd.Parameters.Add("@Password", SqlDbType.NVarChar).Value = password;
+                        cmd.Parameters.Add("@UserType", SqlDbType.Int).Direction = ParameterDirection.Output; ;
+                        cmd.Parameters["@UserType"].Value = 0;
                         cmd.Parameters.Add("@isSuccess", SqlDbType.Bit).Direction = ParameterDirection.Output; ;
                         cmd.Parameters["@isSuccess"].Value = 0;
                         connection.Open();
                         cmd.ExecuteNonQuery();
 
-                        loginSuccess = Convert.ToInt32(cmd.Parameters["@isSuccess"].Value);
+                        res.setIsSuccess(Convert.ToBoolean(cmd.Parameters["@isSuccess"].Value));
+                        res.setUserLevel(Convert.ToInt32(cmd.Parameters["@UserType"].Value));
                         connection.Close();
                     }
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                return false;
+                res.setIsSuccess(false);
+                res.setUserLevel(0);
+                return res;
             }
-            if (loginSuccess == 1)
-            {
-                return true;
-            }
-            return false;
+           
+            return res;
         }
     }
 }

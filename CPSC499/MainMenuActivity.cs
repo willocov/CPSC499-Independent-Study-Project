@@ -32,6 +32,9 @@ namespace CPSC499
 
             ListView.TextFilterEnabled = true;
 
+            Toast.MakeText(ApplicationContext, "User Level: " + MainActivity.UserLevel, ToastLength.Long).Show(); 
+
+
             ListView.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs args)
             {
                 //Toast.MakeText(Application, ((TextView)args.View).Text, ToastLength.Short).Show();
