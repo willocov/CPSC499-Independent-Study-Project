@@ -22,9 +22,9 @@ namespace CPSC499
 
         //string connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
 
-        string[] mainMenuItemsBasic = { "Scan Cases", "Active BOL" };
-        string[] mainMenuItemsSuper = { "Scan Cases", "Active BOL", "Manage BOL" };
-        string[] mainMenuItemsAdmin = { "Scan Cases", "Active BOL", "Manage BOL", "Manage Barcodes", "Manage Scans" };
+        string[] mainMenuItemsBasic = { "Scan Cases", "List BOL" };
+        string[] mainMenuItemsSuper = { "Scan Cases", "List BOL", "Manage BOL" };
+        string[] mainMenuItemsAdmin = { "Scan Cases", "List BOL", "Manage BOL", "Manage Barcodes", "Manage Scans" };
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -59,6 +59,13 @@ namespace CPSC499
                 if (((TextView)args.View).Text == "Scan Cases") {
                    // Intent intent = new Intent(this, typeof(ScanCasesActivity));
                     Intent intent = new Intent(this, typeof(scanCases2Activity));
+
+                    StartActivity(intent);
+                }
+                else if (((TextView)args.View).Text == "List BOL")
+                {
+                    // Intent intent = new Intent(this, typeof(ScanCasesActivity));
+                    Intent intent = new Intent(this, typeof(ViewBOLActivity));
 
                     StartActivity(intent);
                 }

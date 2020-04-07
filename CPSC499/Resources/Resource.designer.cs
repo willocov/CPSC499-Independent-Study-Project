@@ -15,7 +15,7 @@ namespace CPSC499
 {
 	
 	
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
 	public partial class Resource
 	{
 		
@@ -4242,6 +4242,9 @@ namespace CPSC499
 			
 			// aapt resource value: 0x7F0B003C
 			public const int support_simple_spinner_dropdown_item = 2131427388;
+			
+			// aapt resource value: 0x7F0B003D
+			public const int ViewBOL = 2131427389;
 			
 			static Layout()
 			{

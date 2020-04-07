@@ -72,6 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScanCases.cs" />
     <Compile Include="scanCases2Activity.cs" />
+    <Compile Include="ViewBOLActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -137,6 +138,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\scanCases2.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ViewBOL.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
