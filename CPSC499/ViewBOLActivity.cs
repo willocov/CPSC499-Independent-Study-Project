@@ -63,7 +63,7 @@ namespace CPSC499
                 Android.Widget.Toast.MakeText(this, t, Android.Widget.ToastLength.Short).Show();
                 var selected = displayedInfo[e.Position];
                 // Intent intent = new Intent(this, typeof(ScanCasesActivity));
-                Intent intent = new Intent(this, typeof(BOLDetailsActivity));
+                Intent intent = new Intent(this, typeof(BOLEditDetailsActivity));
                 BOLNbr = bolNumbers[e.Position];
                 intent.PutExtra("MyItem", BOLNbr);
 

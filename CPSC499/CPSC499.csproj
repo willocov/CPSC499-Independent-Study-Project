@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BOLDetailsActivity.cs" />
+    <Compile Include="BOLEditDetailsActivity.cs" />
     <Compile Include="ListViewTest.cs" />
     <Compile Include="MainMenuActivity.cs" />
     <Compile Include="MainActivity.cs" />
@@ -190,6 +191,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\wheel12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\BOLDetailsEdit.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
