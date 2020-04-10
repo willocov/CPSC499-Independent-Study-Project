@@ -15,21 +15,21 @@ using Android.Support.V7.RecyclerView.Extensions;
 
 namespace CPSC499
 {
-    [Activity(Label = "Main Menu / DB Insert Test", Theme = "@style/AppTheme")]
-    public class MainMenuActivity : ListActivity
+    [Activity(Label = "Main Menu", Theme = "@style/AppTheme")]
+    public class MainMenuActivity : AppCompatActivity
     {
-        //Screen Object Variables
-
+        private ListView listview;
         //string connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
 
-        string[] mainMenuItemsBasic = { "Scan Cases", "List BOL" };
-        string[] mainMenuItemsSuper = { "Scan Cases", "List BOL", "Manage BOL" };
-        string[] mainMenuItemsAdmin = { "Scan Cases", "List BOL", "Manage BOL", "Manage Barcodes", "Manage Scans" };
+        static readonly string[] mainMenuItemsBasic = { "Scan Cases", "List BOL" };
+        static readonly string[] mainMenuItemsSuper = { "Scan Cases", "List BOL", "Manage BOL" };
+        static readonly string[] mainMenuItemsAdmin = { "Scan Cases", "List BOL", "Manage BOL", "Manage Barcodes", "Manage Scans" };
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+            SetContentView(Resource.Layout.MainMenu);
+            listview = FindViewById<ListView>(Resource.Id.mainMenuListview);
             string[] mainMenuItems;
             switch (MainActivity.UserLevel) {
                 case 1:
@@ -46,29 +46,30 @@ namespace CPSC499
                     break;
             }
 
-            ListAdapter = new ArrayAdapter<string>(this, Resource.Layout.MainMenu, mainMenuItems);  
+            listview.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mainMenuItems);  
 
-            ListView.TextFilterEnabled = true;
-
-            Toast.MakeText(ApplicationContext, "User Level: " + MainActivity.UserLevel, ToastLength.Long).Show(); 
+            Toast.MakeText(ApplicationContext, "User Level: " + MainActivity.UserLevel, ToastLength.Long).Show();
 
 
-            ListView.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs args)
-            {
+            listview.ItemClick += (s, e) => {
+                var t = mainMenuItems[e.Position];
+                Android.Widget.Toast.MakeText(this, t, Android.Widget.ToastLength.Long).Show();
+                
                 //Toast.MakeText(Application, ((TextView)args.View).Text, ToastLength.Short).Show();
-                if (((TextView)args.View).Text == "Scan Cases") {
+                if (mainMenuItems[e.Position].ToString() == "Scan Cases") {
                    // Intent intent = new Intent(this, typeof(ScanCasesActivity));
                     Intent intent = new Intent(this, typeof(scanCases2Activity));
 
                     StartActivity(intent);
                 }
-                else if (((TextView)args.View).Text == "List BOL")
+                else if (mainMenuItems[e.Position].ToString() == "List BOL")
                 {
                     // Intent intent = new Intent(this, typeof(ScanCasesActivity));
                     Intent intent = new Intent(this, typeof(ViewBOLActivity));
 
                     StartActivity(intent);
                 }
+                
             };
         }
     }

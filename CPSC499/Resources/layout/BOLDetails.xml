@@ -1,0 +1,58 @@
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="BOL Number:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="41.5dp"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/BOLDetailsTextView1"
+        android:layout_marginBottom="6.5dp" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="41.5dp"
+        android:layout_toRightOf="@id/BOLDetailsTextView1"
+        android:id="@+id/BOLDetailsEditText1" />
+    <TextView
+        android:text="Customer Name:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="42.2dp"
+        android:layout_below="@id/BOLDetailsTextView1"
+        android:id="@+id/BOLDetailsTextView2"
+        android:layout_marginTop="0.0dp" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="48.7dp"
+        android:layout_toRightOf="@id/BOLDetailsTextView2"
+        android:id="@+id/BOLDetailsEditText2"
+        android:layout_below="@id/BOLDetailsEditText1" />
+    <TextView
+        android:text="Customer Code:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="39.6dp"
+        android:layout_below="@id/BOLDetailsTextView2"
+        android:id="@+id/BOLDetailsTextView3" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="41.5dp"
+        android:layout_below="@id/BOLDetailsEditText2"
+        android:id="@+id/BOLDetailsEditText3"
+        android:layout_toRightOf="@id/BOLDetailsTextView3" />
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@id/BOLDetailsTextView3"
+        android:id="@+id/BOLDetailsListview" />
+
+    
+
+</RelativeLayout>

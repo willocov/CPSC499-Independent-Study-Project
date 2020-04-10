@@ -85,6 +85,12 @@ namespace CPSC499
                     UserLevel = results.getUserLevel();
                     intent.PutExtra("Myitem", UserLevel);
                     StartActivity(intent);
+
+                    //Intent intent = new Intent(this, typeof(ListViewTest));
+                    //UserLevel = results.getUserLevel();
+                    //intent.PutExtra("Myitem", UserLevel);
+                    //StartActivity(intent);
+
                 }
                 else
                 {
