@@ -15,7 +15,7 @@ using Android.Widget;
 
 namespace CPSC499
 {
-    [Activity(Label = "ViewBOL")]
+    [Activity(Label = "View Orders")]
     public class ViewBOLActivity : AppCompatActivity
     {
         private ListView listview;
@@ -62,13 +62,24 @@ namespace CPSC499
                 var t = displayedInfo[e.Position];
                 Android.Widget.Toast.MakeText(this, t, Android.Widget.ToastLength.Short).Show();
                 var selected = displayedInfo[e.Position];
-                // Intent intent = new Intent(this, typeof(ScanCasesActivity));
-                Intent intent = new Intent(this, typeof(BOLEditDetailsActivity));
-                BOLNbr = bolNumbers[e.Position];
-                intent.PutExtra("MyItem", BOLNbr);
+                if (MainMenuActivity.isViewBOL == true)
+                {
+                    // Intent intent = new Intent(this, typeof(ScanCasesActivity));
+                    Intent intent = new Intent(this, typeof(BOLDetailsActivity));
+                    BOLNbr = bolNumbers[e.Position];
+                    intent.PutExtra("MyItem", BOLNbr);
 
-                StartActivity(intent);
+                    StartActivity(intent);
+                }
+                else
+                {
+                    // Intent intent = new Intent(this, typeof(ScanCasesActivity));
+                    Intent intent = new Intent(this, typeof(BOLEditDetailsActivity));
+                    BOLNbr = bolNumbers[e.Position];
+                    intent.PutExtra("MyItem", BOLNbr);
 
+                    StartActivity(intent);
+                }
             };
 
         }

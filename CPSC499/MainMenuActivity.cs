@@ -16,14 +16,16 @@ using Android.Support.V7.RecyclerView.Extensions;
 namespace CPSC499
 {
     [Activity(Label = "Main Menu", Theme = "@style/AppTheme")]
+
     public class MainMenuActivity : AppCompatActivity
     {
+        public static bool isViewBOL { get; set; }
         private ListView listview;
         //string connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
 
-        static readonly string[] mainMenuItemsBasic = { "Scan Cases", "List BOL" };
-        static readonly string[] mainMenuItemsSuper = { "Scan Cases", "List BOL", "Manage BOL" };
-        static readonly string[] mainMenuItemsAdmin = { "Scan Cases", "List BOL", "Manage BOL", "Manage Barcodes", "Manage Scans" };
+        static readonly string[] mainMenuItemsBasic = { "Scan Cases", "View Orders" };
+        static readonly string[] mainMenuItemsSuper = { "Scan Cases", "View Orders", "Manage Orders" };
+        static readonly string[] mainMenuItemsAdmin = { "Scan Cases", "View Orders", "Manage Orders", "Manage Barcodes", "Manage Scans" };
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -62,14 +64,23 @@ namespace CPSC499
 
                     StartActivity(intent);
                 }
-                else if (mainMenuItems[e.Position].ToString() == "List BOL")
+                else if (mainMenuItems[e.Position].ToString() == "View Orders")
+                {
+                    // Intent intent = new Intent(this, typeof(ScanCasesActivity));
+                    isViewBOL = true;
+                    Intent intent = new Intent(this, typeof(ViewBOLActivity));
+                    intent.PutExtra("MyItem", isViewBOL);
+                    StartActivity(intent);
+                }
+                else if (mainMenuItems[e.Position].ToString() == "Manage Orders")
                 {
                     // Intent intent = new Intent(this, typeof(ScanCasesActivity));
                     Intent intent = new Intent(this, typeof(ViewBOLActivity));
-
+                    isViewBOL = false;
+                    intent.PutExtra("MyItem", isViewBOL);
                     StartActivity(intent);
                 }
-                
+
             };
         }
     }

@@ -1,0 +1,87 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="187.6dp"
+        android:id="@+id/BOLAddEditRelativeLayout1">
+        <TextView
+            android:text="BOL Number:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="60.4dp"
+            android:id="@+id/BOLAddtextView1" />
+        <TextView
+            android:text="Customer Name:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="63.3dp"
+            android:layout_below="@id/BOLAddtextView1"
+            android:id="@+id/BOLAddtextView2"
+            android:layout_marginBottom="10.9dp" />
+        <TextView
+            android:text="Customer Code:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="46.5dp"
+            android:layout_below="@id/BOLAddtextView2"
+            android:id="@+id/BOLAddtextView3" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="47.3dp"
+            android:layout_toRightOf="@id/BOLAddtextView1"
+            android:id="@+id/BOLAddeditText1" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="59.3dp"
+            android:layout_below="@id/BOLAddeditText1"
+            android:id="@+id/BOLAddeditText2"
+            android:layout_toRightOf="@id/BOLAddtextView2" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="74.2dp"
+            android:layout_below="@id/BOLAddeditText2"
+            android:layout_toRightOf="@id/BOLAddtextView3"
+            android:id="@+id/BOLAddeditText3" />
+    </RelativeLayout>
+    <TextView
+        android:text="Item"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/BOLAddEditTextView1" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="44.0dp"
+        android:id="@+id/BOLAddEditSpinner1" />
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="236.4dp"
+        android:id="@+id/BOLAddEditRelativeLayout2">
+        <TextView
+            android:text="Quantity:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="41.5dp"
+            android:id="@+id/BOLAddEditTextView2" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="44.4dp"
+            android:layout_toRightOf="@id/BOLAddEditTextView2"
+            android:id="@+id/BOLAddEditEditText1" />
+    </RelativeLayout>
+    <Button
+        android:text="Enter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/BOLAddEditBtn" />
+
+</LinearLayout>

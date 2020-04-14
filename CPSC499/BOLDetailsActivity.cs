@@ -14,7 +14,7 @@ using Android.Views;
 using Android.Widget;
 namespace CPSC499
 {
-    [Activity(Label = "BOLDetailsActivity")]
+    [Activity(Label = "Order Details")]
     public class BOLDetailsActivity : AppCompatActivity
     {
         private ListView listview;
@@ -33,6 +33,7 @@ namespace CPSC499
             editTextBOL.SetFocusable(ViewFocusability.NotFocusable);
             editTextCustomerName.SetFocusable(ViewFocusability.NotFocusable);
             editTextCustomerNbr.SetFocusable(ViewFocusability.NotFocusable);
+
             //Run SQL Query to get all BOLs
             string selectedBOLNbr = ViewBOLActivity.BOLNbr;
             List<string> displayedInfo = new List<string>();
