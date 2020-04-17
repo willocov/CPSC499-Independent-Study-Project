@@ -75,6 +75,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScanCases.cs" />
     <Compile Include="scanCases2Activity.cs" />
+    <Compile Include="ViewBarcodeActivity.cs" />
     <Compile Include="ViewBOLActivity.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +201,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\BOLAddEditItem.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ViewBarcodes.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
