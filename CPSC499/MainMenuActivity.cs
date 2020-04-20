@@ -56,17 +56,18 @@ namespace CPSC499
             listview.ItemClick += (s, e) => {
                 var t = mainMenuItems[e.Position];
                 Android.Widget.Toast.MakeText(this, t, Android.Widget.ToastLength.Long).Show();
-                
+
                 //Toast.MakeText(Application, ((TextView)args.View).Text, ToastLength.Short).Show();
-                if (mainMenuItems[e.Position].ToString() == "Scan Cases") {
-                   // Intent intent = new Intent(this, typeof(ScanCasesActivity));
+                if (mainMenuItems[e.Position].ToString() == "Scan Cases")
+                {
+                    // Intent intent = new Intent(this, typeof(ScanCasesActivity));
                     Intent intent = new Intent(this, typeof(scanCases2Activity));
 
                     StartActivity(intent);
                 }
                 else if (mainMenuItems[e.Position].ToString() == "View Orders")
                 {
-                    // Intent intent = new Intent(this, typeof(ScanCasesActivity));
+                    //Readonly version of BOL Details
                     isViewBOL = true;
                     Intent intent = new Intent(this, typeof(ViewBOLActivity));
                     intent.PutExtra("MyItem", isViewBOL);
@@ -74,11 +75,24 @@ namespace CPSC499
                 }
                 else if (mainMenuItems[e.Position].ToString() == "Manage Orders")
                 {
-                    // Intent intent = new Intent(this, typeof(ScanCasesActivity));
-                    Intent intent = new Intent(this, typeof(ViewBOLActivity));
+                    //Editable version of BOL Details
                     isViewBOL = false;
+                    Intent intent = new Intent(this, typeof(ViewBOLActivity));
                     intent.PutExtra("MyItem", isViewBOL);
                     StartActivity(intent);
+                }
+                else if (mainMenuItems[e.Position].ToString() == "Manage Barcodes")
+                {
+
+                    //Edit Parsing Rules
+                    Intent intent = new Intent(this, typeof(ViewBarcodeActivity));
+                    StartActivity(intent);
+                }
+                else if (mainMenuItems[e.Position].ToString() == "Manage Scans") {
+
+                    //Delete Scans
+                    //Intent intent = new Intent(this, ViewScansActivity);
+                    //StartActivity(intent);
                 }
 
             };

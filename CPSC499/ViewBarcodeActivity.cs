@@ -21,9 +21,11 @@ namespace CPSC499
     {
         private ListView barcodeListView;
         List<string> displayBarcodes;
-        List<string> parsingIDs;
+        List<int> parsingIDs;
         string connectionString;
+        Button btnNew;
 
+        public static int ParsingID { get; set; }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -32,12 +34,37 @@ namespace CPSC499
 
             // Create your application here
             barcodeListView = FindViewById<ListView>(Resource.Id.viewBarcodesListview);
+            btnNew = FindViewById<Button>(Resource.Id.btnBarcodeAdd);
             displayBarcodes = new List<string>();
-            parsingIDs = new List<string>();
+            parsingIDs = new List<int>();
             connectionString = connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
-
+            
             //Load Listview
             ReloadListView();
+
+            //Handle Item Click from List
+            barcodeListView.ItemClick += (s, e) =>
+            {
+                var t = displayBarcodes[e.Position];
+                var selected = displayBarcodes[e.Position];
+                Intent intent = new Intent(this, typeof(BarcodeAddEditActivity));
+                ParsingID = parsingIDs[e.Position];
+                intent.PutExtra("MyItems", ParsingID);
+                StartActivity(intent);
+
+                this.Recreate();
+            };
+
+            btnNew.Click += (s, e) =>
+            {
+                ParsingID = -1;
+                Intent intent = new Intent(this, typeof(BarcodeAddEditActivity));
+                intent.PutExtra("MyItems", ParsingID);
+                StartActivity(intent);
+
+                this.Recreate();
+
+            };
         }
 
         public void ReloadListView() {
@@ -56,7 +83,7 @@ namespace CPSC499
                         while (reader.Read()) {
                             //Populate List with Query Results
                             displayBarcodes.Add(string.Format("{0} - {1}", reader[1], reader[2]));
-                            parsingIDs.Add(string.Format("{0}", reader[0]));                        
+                            parsingIDs.Add(Int32.Parse(reader[0].ToString()));                        
                         }
                     }
                     connection.Close();

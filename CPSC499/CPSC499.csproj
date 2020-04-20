@@ -65,6 +65,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BarcodeAddEditActivity.cs" />
     <Compile Include="BOLAddEditActivity.cs" />
     <Compile Include="BOLDetailsActivity.cs" />
     <Compile Include="BOLEditDetailsActivity.cs" />
@@ -206,6 +207,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\ViewBarcodes.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\BarcodeDetails.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\layout1.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
