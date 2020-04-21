@@ -86,6 +86,13 @@ namespace CPSC499
             btnSave.Click += (s, e) =>
             {
                 if (!isEditVisible) {
+                    //Validate Fields
+                    if (!ValidateTextFields()) {
+                        //If Field Validation Fails
+                        Toast.MakeText(ApplicationContext, "Error: Invalid Field Entry. Fields can not be partially filled and fields can not exceed barcode length.", ToastLength.Long).Show();
+                        return;
+                    }
+
                     //Add or Update Rule
                     if (parsingID == -1)
                     {
@@ -114,10 +121,9 @@ namespace CPSC499
                         }
                     }
                 }
-                flipButtonState();
-                
+                else
+                    flipButtonState();
             };
-
         }
 
         void AddParsingRule() {
@@ -140,7 +146,6 @@ namespace CPSC499
                         command.Parameters.Add("@WeightStartIndex", SqlDbType.Int).Value = Int32.Parse(etWgtSP.Text);
                         command.Parameters.Add("@WeightLen", SqlDbType.Int).Value = Int32.Parse(etWgtLen.Text);
                         command.Parameters.Add("@WeightDecimalPlace", SqlDbType.Int).Value = Int32.Parse(etWgtDP.Text);
-
                         command.ExecuteNonQuery();
 
                     }
@@ -191,6 +196,53 @@ namespace CPSC499
                 Toast.MakeText(ApplicationContext, "Failed to update Barcode Rule: " + ex.Message, ToastLength.Long).Show();
 
             }
+        }
+
+        bool ValidateTextFields() {
+            //1. Check for invalid empty fields
+            //2. Field does not exceed parsing length
+            //3. Additional Validation
+
+            //Check for invalid empty fields
+            //LotNbr
+            if ((etLotNbrSP.Text == "" && etLotNbrLen.Text != "") || (etLotNbrSP.Text != "" && etLotNbrLen.Text == ""))
+                return false;
+            //ItemNbr
+            if ((etItemNbrSP.Text == "" && etItemNbrLen.Text != "") || (etItemNbrSP.Text != "" && etItemNbrLen.Text == ""))
+                return false;
+            //Weight
+            if ((etWgtSP.Text == "" && etWgtLen.Text != "") || (etWgtSP.Text != "" && etWgtLen.Text == ""))
+                return false;
+            //Date
+            if ((etDateSP.Text == "" && etDateLen.Text != "") || (etDateSP.Text != "" && etDateLen.Text == ""))
+                return false;
+
+            //Check that fields do not exceed parsing length
+            int maxLength = Int32.Parse(etBarcodeLength.Text);
+
+            if(etItemNbrSP.Text != "" && etItemNbrLen.Text != "")
+                if (Int32.Parse(etItemNbrSP.Text) + Int32.Parse(etItemNbrLen.Text) - 1 > maxLength)
+                    return false;
+
+            if (etLotNbrSP.Text != "" && etLotNbrLen.Text != "")
+                if (Int32.Parse(etLotNbrSP.Text) + Int32.Parse(etLotNbrLen.Text) - 1 > maxLength)
+                    return false;
+
+            if (etWgtSP.Text != "" && etWgtLen.Text != "")
+                if (Int32.Parse(etWgtSP.Text) + Int32.Parse(etWgtLen.Text) - 1 > maxLength)
+                    return false;
+
+            if (etDateSP.Text != "" && etDateLen.Text != "")
+                if (Int32.Parse(etDateSP.Text) + Int32.Parse(etDateLen.Text) - 1 > maxLength)
+                    return false;
+
+            //Check Weight Decimal Places
+            if (etWgtDP.Text != "" && etWgtLen.Text != "")
+                if (Int32.Parse(etWgtDP.Text) > Int32.Parse(etWgtLen.Text))
+                    return false;
+
+            //All Validation Passed, Return True
+            return true;
         }
 
         void setButtonState(bool state) {

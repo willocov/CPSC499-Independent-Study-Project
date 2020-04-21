@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scroll"
@@ -47,6 +47,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="number"
                 android:id="@+id/editTextBarcodeLength" />
         </LinearLayout>
         <TextView
@@ -72,6 +73,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="number"
                 android:id="@+id/editTextItemNbrPS" />
         </LinearLayout>
         <LinearLayout
@@ -91,6 +93,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="number"
                 android:id="@+id/editTextItemNbrLen" />
 
         </LinearLayout>
@@ -116,6 +119,7 @@
                 android:id="@+id/textViewLotNbrSP" />
             <EditText
                 android:layout_width="match_parent"
+                android:inputType="number"
                 android:layout_height="match_parent"
                 android:id="@+id/editTextLotNbrSP" />
         </LinearLayout>
@@ -136,6 +140,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="number"
                 android:id="@+id/editTextLotNbrLen" />
         </LinearLayout>
 
@@ -162,6 +167,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="number"
                 android:id="@+id/editTextWgtSP" />
         </LinearLayout>
         <LinearLayout
@@ -181,6 +187,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="number"
                 android:id="@+id/editTextWgtLen" />
         </LinearLayout>
         <LinearLayout
@@ -200,6 +207,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="number"
                 android:id="@+id/editTextWgtDP" />
         </LinearLayout>
         <TextView
@@ -225,6 +233,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="number"
                 android:id="@+id/editTextDateSP" />
         </LinearLayout>
         <LinearLayout
@@ -244,6 +253,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="number"
                 android:id="@+id/editTextDateLen" />
         </LinearLayout>
         <LinearLayout
