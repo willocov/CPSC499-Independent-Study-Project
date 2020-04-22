@@ -51,11 +51,17 @@
                 android:id="@+id/editTextBarcodeLength" />
         </LinearLayout>
         <TextView
-            android:text="Item Number"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textViewItemNbr" />
+        <TextView
+            android:text="Item Number"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewItemNbr9999" />
         <LinearLayout
             android:orientation="horizontal"
             android:minWidth="25px"
@@ -97,6 +103,12 @@
                 android:id="@+id/editTextItemNbrLen" />
 
         </LinearLayout>
+        <TextView
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewItemNbr999" />
         <TextView
             android:text="Lot Number"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -143,6 +155,12 @@
                 android:inputType="number"
                 android:id="@+id/editTextLotNbrLen" />
         </LinearLayout>
+        <TextView
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewItemNbr99" />
 
         <TextView
             android:text="Weight"
@@ -211,6 +229,12 @@
                 android:id="@+id/editTextWgtDP" />
         </LinearLayout>
         <TextView
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewItemNbr9" />
+        <TextView
             android:text="Date"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_width="match_parent"
@@ -265,7 +289,7 @@
             android:id="@+id/linearLayout10"
             android:layout_marginBottom="0.0dp">
             <TextView
-                android:text="Date Format"
+                android:text="Date Format:"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

@@ -135,17 +135,17 @@ namespace CPSC499
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.Add("@Company", SqlDbType.NVarChar).Value = etCompany.Text;
                         command.Parameters.Add("@ParsingRuleName", SqlDbType.NVarChar).Value = etRuleName.Text;
-                        command.Parameters.Add("@BarcodeLength", SqlDbType.Int).Value = Int32.Parse(etBarcodeLength.Text);
-                        command.Parameters.Add("@ItemNbrStartIndex", SqlDbType.Int).Value = Int32.Parse(etItemNbrSP.Text);
-                        command.Parameters.Add("@ItemNbrLen", SqlDbType.Int).Value = Int32.Parse(etItemNbrLen.Text);
-                        command.Parameters.Add("@DateStartIndex", SqlDbType.Int).Value = Int32.Parse(etDateSP.Text);
-                        command.Parameters.Add("@DateLen", SqlDbType.Int).Value = Int32.Parse(etDateLen.Text);
+                        command.Parameters.Add("@BarcodeLength", SqlDbType.NVarChar).Value = etBarcodeLength.Text;
+                        command.Parameters.Add("@ItemNbrStartIndex", SqlDbType.NVarChar).Value = etItemNbrSP.Text;
+                        command.Parameters.Add("@ItemNbrLen", SqlDbType.NVarChar).Value = etItemNbrLen.Text;
+                        command.Parameters.Add("@DateStartIndex", SqlDbType.NVarChar).Value = etDateSP.Text;
+                        command.Parameters.Add("@DateLen", SqlDbType.NVarChar).Value = etDateLen.Text;
                         command.Parameters.Add("@DateFormat", SqlDbType.NVarChar).Value = etDateFormat.Text;
-                        command.Parameters.Add("@LotNbrStartIndex", SqlDbType.Int).Value = Int32.Parse(etLotNbrSP.Text);
-                        command.Parameters.Add("@LotNbrLen", SqlDbType.Int).Value = Int32.Parse(etLotNbrLen.Text);
-                        command.Parameters.Add("@WeightStartIndex", SqlDbType.Int).Value = Int32.Parse(etWgtSP.Text);
-                        command.Parameters.Add("@WeightLen", SqlDbType.Int).Value = Int32.Parse(etWgtLen.Text);
-                        command.Parameters.Add("@WeightDecimalPlace", SqlDbType.Int).Value = Int32.Parse(etWgtDP.Text);
+                        command.Parameters.Add("@LotNbrStartIndex", SqlDbType.NVarChar).Value = etLotNbrSP.Text;
+                        command.Parameters.Add("@LotNbrLen", SqlDbType.NVarChar).Value = etLotNbrLen.Text;
+                        command.Parameters.Add("@WeightStartIndex", SqlDbType.NVarChar).Value = etWgtSP.Text;
+                        command.Parameters.Add("@WeightLen", SqlDbType.NVarChar).Value = etWgtLen.Text;
+                        command.Parameters.Add("@WeightDecimalPlace", SqlDbType.NVarChar).Value = etWgtDP.Text;
                         command.ExecuteNonQuery();
 
                     }
@@ -153,8 +153,14 @@ namespace CPSC499
                     connection.Close();
                 }
             }
-            catch (Exception ex) { 
-                Toast.MakeText(ApplicationContext, "Failed to Add Barcode Rule: " + ex.Message, ToastLength.Long).Show();
+            catch (Exception ex) {
+                //Toast.MakeText(ApplicationContext, "Failed to Add Barcode Rule: " + ex.Message, ToastLength.Long).Show();
+                Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
+                alert.SetTitle("Specify Action");
+                alert.SetMessage(ex.Message);
+
+                Dialog dialog = alert.Create();
+                dialog.Show();
 
             }
         }
@@ -172,17 +178,17 @@ namespace CPSC499
                         command.Parameters.Add("@ParsingID", SqlDbType.Int).Value = selectedParsingRule;
                         command.Parameters.Add("@Company", SqlDbType.NVarChar).Value = etCompany.Text;
                         command.Parameters.Add("@ParsingRuleName", SqlDbType.NVarChar).Value = etRuleName.Text;
-                        command.Parameters.Add("@BarcodeLength", SqlDbType.Int).Value = Int32.Parse(etBarcodeLength.Text);
-                        command.Parameters.Add("@ItemNbrStartIndex", SqlDbType.Int).Value = Int32.Parse(etItemNbrSP.Text);
-                        command.Parameters.Add("@ItemNbrLen", SqlDbType.Int).Value = Int32.Parse(etItemNbrLen.Text);
-                        command.Parameters.Add("@DateStartIndex", SqlDbType.Int).Value = Int32.Parse(etDateSP.Text);
-                        command.Parameters.Add("@DateLen", SqlDbType.Int).Value = Int32.Parse(etDateLen.Text);
+                        command.Parameters.Add("@BarcodeLength", SqlDbType.NVarChar).Value = etBarcodeLength.Text;
+                        command.Parameters.Add("@ItemNbrStartIndex", SqlDbType.NVarChar).Value = etItemNbrSP.Text;
+                        command.Parameters.Add("@ItemNbrLen", SqlDbType.NVarChar).Value = etItemNbrLen.Text;
+                        command.Parameters.Add("@DateStartIndex", SqlDbType.NVarChar).Value = etDateSP.Text;
+                        command.Parameters.Add("@DateLen", SqlDbType.NVarChar).Value = etDateLen.Text;
                         command.Parameters.Add("@DateFormat", SqlDbType.NVarChar).Value = etDateFormat.Text;
-                        command.Parameters.Add("@LotNbrStartIndex", SqlDbType.Int).Value = Int32.Parse(etLotNbrSP.Text);
-                        command.Parameters.Add("@LotNbrLen", SqlDbType.Int).Value = Int32.Parse(etLotNbrLen.Text);
-                        command.Parameters.Add("@WeightStartIndex", SqlDbType.Int).Value = Int32.Parse(etWgtSP.Text);
-                        command.Parameters.Add("@WeightLen", SqlDbType.Int).Value = Int32.Parse(etWgtLen.Text);
-                        command.Parameters.Add("@WeightDecimalPlace", SqlDbType.Int).Value = Int32.Parse(etWgtDP.Text);
+                        command.Parameters.Add("@LotNbrStartIndex", SqlDbType.NVarChar).Value = etLotNbrSP.Text;
+                        command.Parameters.Add("@LotNbrLen", SqlDbType.NVarChar).Value = etLotNbrLen.Text;
+                        command.Parameters.Add("@WeightStartIndex", SqlDbType.NVarChar).Value = etWgtSP.Text;
+                        command.Parameters.Add("@WeightLen", SqlDbType.NVarChar).Value = etWgtLen.Text;
+                        command.Parameters.Add("@WeightDecimalPlace", SqlDbType.NVarChar).Value = etWgtDP.Text;
 
                         command.ExecuteNonQuery();
 
