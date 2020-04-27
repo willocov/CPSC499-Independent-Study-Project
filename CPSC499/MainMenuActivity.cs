@@ -91,8 +91,8 @@ namespace CPSC499
                 else if (mainMenuItems[e.Position].ToString() == "Manage Scans") {
 
                     //Delete Scans
-                    //Intent intent = new Intent(this, ViewScansActivity);
-                    //StartActivity(intent);
+                    Intent intent = new Intent(this, typeof(ViewScansActivity));
+                    StartActivity(intent);
                 }
 
             };

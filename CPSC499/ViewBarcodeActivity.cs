@@ -82,7 +82,7 @@ namespace CPSC499
                         SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read()) {
                             //Populate List with Query Results
-                            displayBarcodes.Add(string.Format("{0} - {1}", reader[1], reader[2]));
+                            displayBarcodes.Add(string.Format("{0}\n{1} - {2}", reader[2], reader[0], reader[1]));
                             parsingIDs.Add(Int32.Parse(reader[0].ToString()));                        
                         }
                     }

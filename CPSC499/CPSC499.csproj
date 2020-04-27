@@ -76,8 +76,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScanCases.cs" />
     <Compile Include="scanCases2Activity.cs" />
+    <Compile Include="ScanDetailsActivity.cs" />
     <Compile Include="ViewBarcodeActivity.cs" />
     <Compile Include="ViewBOLActivity.cs" />
+    <Compile Include="ViewScansActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -217,6 +219,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\layout1.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ViewScans.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ScanDetails.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -43,7 +43,7 @@ namespace CPSC499
                         {
                             while (reader.Read())
                             {
-                                displayedInfo.Add(String.Format("{0} - {1}", reader[0], reader[1]));
+                                displayedInfo.Add(String.Format("{0}\n{1}", reader[1], reader[0]));
                                 bolNumbers.Add(String.Format("{0}", reader[0]));
                             }
                         }
