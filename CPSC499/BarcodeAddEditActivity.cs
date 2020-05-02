@@ -38,7 +38,6 @@ namespace CPSC499
         bool isNewRule;
         bool isEditVisible;
         int parsingID;
-        string connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -129,7 +128,7 @@ namespace CPSC499
         void AddParsingRule() {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString)) {
+                using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString)) {
                     connection.Open();
                     using (SqlCommand command = new SqlCommand("AddParsingRule", connection)) {
                         command.CommandType = CommandType.StoredProcedure;
@@ -169,7 +168,7 @@ namespace CPSC499
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString))
                 {
                     connection.Open();
                     using (SqlCommand command = new SqlCommand("UpdateParsingRule", connection))
@@ -299,7 +298,7 @@ namespace CPSC499
         void getRuleInfo(int parsingID) {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString))
                 {
                     connection.Open();
                     using (SqlCommand command = new SqlCommand("GetParsingRuleInfo", connection))

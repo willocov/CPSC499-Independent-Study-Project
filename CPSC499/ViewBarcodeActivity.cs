@@ -22,7 +22,6 @@ namespace CPSC499
         private ListView barcodeListView;
         List<string> displayBarcodes;
         List<int> parsingIDs;
-        string connectionString;
         Button btnNew;
 
         public static int ParsingID { get; set; }
@@ -37,7 +36,6 @@ namespace CPSC499
             btnNew = FindViewById<Button>(Resource.Id.btnBarcodeAdd);
             displayBarcodes = new List<string>();
             parsingIDs = new List<int>();
-            connectionString = connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
             
             //Load Listview
             ReloadListView();
@@ -75,7 +73,7 @@ namespace CPSC499
                 parsingIDs.Clear();
 
                 //Query SQL Server for Barcode Parsing Rules
-                using (SqlConnection connection = new SqlConnection(connectionString)) {
+                using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString)) {
                     connection.Open();
                     using (SqlCommand command = new SqlCommand("ListParsingRules", connection)) {
                         command.CommandType = CommandType.StoredProcedure;
@@ -98,6 +96,10 @@ namespace CPSC499
 
         }
 
-
+        protected override void OnRestart()
+        {
+            base.OnResume(); // Always call the superclass first.
+            ReloadListView();
+        }
     }
 }

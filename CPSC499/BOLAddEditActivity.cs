@@ -31,7 +31,6 @@ namespace CPSC499
         List<string> itemNumbers = new List<string>();
         string selectedBOLNbr = BOLEditDetailsActivity.BOLNbr;
         string selectedItemNbr = BOLEditDetailsActivity.ItemNbr;
-        string connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -73,7 +72,7 @@ namespace CPSC499
                                  parsedQuantity.ToString() + ", " +
                                  0.ToString() + ")";
                         //Run SQL Query
-                        using (SqlConnection connection = new SqlConnection(connectionString))
+                        using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString))
                         {
 
                             using (SqlCommand cmd = new SqlCommand(sql, connection))
@@ -114,7 +113,7 @@ namespace CPSC499
             
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString))
                 {
                     //Get General BOL information
                     using (SqlCommand cmd = new SqlCommand(@"

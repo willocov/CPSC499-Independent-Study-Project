@@ -21,20 +21,19 @@ using Xamarin.Essentials;
 namespace CPSC499
 {
     [Activity(Label = "Scan Cases")]
-    public class scanCases2Activity : AppCompatActivity, IPermissionListener
+    public class ScanCasesActivity : AppCompatActivity, IPermissionListener
     {
         //Declare Screen Objects
         Button btnBOL, btnBarcode, btnEnter, btnCancel, btnUndo;
         EditText txtBOL, txtCustomer, txtBarcode, txtTotalScans, txtItemNbr, txtItemDate, txtItemLot, txtItemWeight;
         ZXingScannerView BOLScanner;
-        string connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.scanCases2);
+            SetContentView(Resource.Layout.ScanCases);
 
 
             Dexter.WithActivity(this)
@@ -169,11 +168,11 @@ namespace CPSC499
 
         private class MyResultHandler : IResultHandler
         {
-            private scanCases2Activity scanCases;
+            private ScanCasesActivity scanCases;
             int textBox;
             const int customerType = 0;
             const int barcodeType = 1;
-            public MyResultHandler(scanCases2Activity mainActivity, int txtbox)
+            public MyResultHandler(ScanCasesActivity mainActivity, int txtbox)
             {
                 this.scanCases = mainActivity;
                 textBox = txtbox;
@@ -201,7 +200,7 @@ namespace CPSC499
             string customerName = null;
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString))
                 {
                     using (SqlCommand command = new SqlCommand("GetCustomerName", connection))
                     {
@@ -231,7 +230,7 @@ namespace CPSC499
             //This function runs a SQL query to get the customer name based off the BOL number.
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString))
                 {
                     using (SqlCommand command = new SqlCommand("ParseBarcode", connection))
                     {

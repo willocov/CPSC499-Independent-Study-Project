@@ -18,7 +18,6 @@ namespace CPSC499
     [Activity(Label = "Scan Details")]
     public class ScanDetailsActivity : AppCompatActivity
     {
-        const string connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
         EditText editTextBarcode;
         EditText editTextRuleID;
         EditText editTextBOLNbr;
@@ -68,7 +67,7 @@ namespace CPSC499
         private void DeleteScan() {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString)) {
+                using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString)) {
                     using (SqlCommand command = new SqlCommand("DeleteScan", connection)) {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@ScanID", SqlDbType.Int).Value = ViewScansActivity.SelectedScanID;
@@ -88,7 +87,7 @@ namespace CPSC499
             try {
                 ClearTextFields();
 
-                using (SqlConnection connection = new SqlConnection(connectionString)) {
+                using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString)) {
                     using (SqlCommand command = new SqlCommand("ViewScanDetails", connection)) {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.Parameters.Add("@ScanID", System.Data.SqlDbType.Int).Value = ViewScansActivity.SelectedScanID;

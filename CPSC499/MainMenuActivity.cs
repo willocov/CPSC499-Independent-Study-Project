@@ -21,7 +21,6 @@ namespace CPSC499
     {
         public static bool isViewBOL { get; set; }
         private ListView listview;
-        //string connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
 
         static readonly string[] mainMenuItemsBasic = { "Scan Cases", "View Orders" };
         static readonly string[] mainMenuItemsSuper = { "Scan Cases", "View Orders", "Manage Orders" };
@@ -61,7 +60,7 @@ namespace CPSC499
                 if (mainMenuItems[e.Position].ToString() == "Scan Cases")
                 {
                     // Intent intent = new Intent(this, typeof(ScanCasesActivity));
-                    Intent intent = new Intent(this, typeof(scanCases2Activity));
+                    Intent intent = new Intent(this, typeof(ScanCasesActivity));
 
                     StartActivity(intent);
                 }

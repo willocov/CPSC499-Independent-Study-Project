@@ -19,8 +19,6 @@ namespace CPSC499
         EditText usernameTextBox;
         EditText passwordTextBox;
         //Connection String When At Home
-        string connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
-        //string connectionString = @"Server=10.67.87.20;Database=CPSC499;User Id=cpsc499;Password=test;";
         enum USERLEVEL { NONE = 0, BASIC = 1, SUPERVISOR = 2, ADMIN = 3};
 
         public static int UserLevel { get; set; }
@@ -64,7 +62,7 @@ namespace CPSC499
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.activity_main);
+            SetContentView(Resource.Layout.LoginScreen);
 
             loginButton = (Button)FindViewById(Resource.Id.ButtonLogin);
             usernameTextBox = (EditText)FindViewById(Resource.Id.EditTextUserName);
@@ -124,7 +122,7 @@ namespace CPSC499
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand("UserLogin", connection))
                     {

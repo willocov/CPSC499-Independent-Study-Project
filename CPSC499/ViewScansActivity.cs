@@ -52,13 +52,11 @@ namespace CPSC499
             reloadListView();
         }
         private void reloadListView() {
-            string connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
-
             try
             {
                 scanIDs.Clear();
                 displayedInfo.Clear();
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString))
                 {
                     using (SqlCommand command = new SqlCommand("ListScans", connection))
                     {

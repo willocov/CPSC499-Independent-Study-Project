@@ -58,7 +58,6 @@ namespace CPSC499
             string selectedBOLNbr = ViewBOLActivity.BOLNbr;
             List<string> displayedInfo = new List<string>();
             List<string> itemNumbers = new List<string>();
-            string connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
             int selectedPosition = -1;
 
             btnNew.Click += btnAdd_Click;
@@ -67,7 +66,7 @@ namespace CPSC499
             // Create your application here
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString))
                 {
                     //Get General BOL information
                     using (SqlCommand cmd = new SqlCommand(@"
@@ -114,7 +113,7 @@ namespace CPSC499
                 itemNumbers.Clear();
                 try
                 {
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString))
                     {
                         //Get BOL Items and Scans information
                         using (SqlCommand cmd = new SqlCommand(@"
@@ -160,7 +159,7 @@ namespace CPSC499
                     {
                         string sql =
                             @"Delete from BOLDetails Where BOLNumber = '" + BOLNbr + "' AND ItemNumber = '" + itemNumbers[selectedPosition] + "'";
-                        using (SqlConnection connection = new SqlConnection(connectionString))
+                        using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString))
                         {
 
                             using (SqlCommand cmd = new SqlCommand(sql, connection))
@@ -238,7 +237,7 @@ namespace CPSC499
                 string sql = @"Update Scans Set isActive = 0 Where BOL = '" + bolNbr + "' " +
                     "AND ItemNbr = '" + itemNbr + "'";
                 try {
-                    using (SqlConnection connection = new SqlConnection(connectionString)) 
+                    using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString)) 
                     {
                         using (SqlCommand cmd = new SqlCommand(sql, connection))
                         {

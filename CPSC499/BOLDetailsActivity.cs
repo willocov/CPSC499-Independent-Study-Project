@@ -38,10 +38,9 @@ namespace CPSC499
             string selectedBOLNbr = ViewBOLActivity.BOLNbr;
             List<string> displayedInfo = new List<string>();
             List<string> itemNumbers = new List<string>();
-            string connectionString = @"Server=192.168.1.102;Database=CPSC499;User Id=cpsc499;Password=test;";
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString))
                 {
                     //Get General BOL information
                     using (SqlCommand cmd = new SqlCommand(@"
