@@ -9,9 +9,16 @@
     android:layout_height="match_parent"
     android:id="@+id/linearLayout1">
 
+    <EDMTDev.ZXingXamarinAndroid.ZXingScannerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/qrBOL"
+        />
+        
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             p1:text="BOL: "
@@ -34,7 +41,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             p1:text="Customer:"
@@ -53,7 +61,8 @@
     
 <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             p1:text="Barcode:"
@@ -75,6 +84,7 @@
     </LinearLayout>
        <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="horizontal"
         android:layout_height="wrap_content">
 
         <TextView
@@ -93,6 +103,7 @@
     </LinearLayout>
        <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="horizontal"
         android:layout_height="wrap_content">
 
         <TextView
@@ -111,6 +122,7 @@
     </LinearLayout>
        <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="horizontal"
         android:layout_height="wrap_content">
 
         <TextView
@@ -130,6 +142,7 @@
     </LinearLayout>
        <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="horizontal"
         android:layout_height="wrap_content">
 
         <TextView
@@ -148,6 +161,7 @@
     </LinearLayout>
        <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="horizontal"
         android:layout_height="wrap_content">
 
         <TextView
@@ -167,6 +181,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="horizontal"
         android:layout_height="wrap_content">
 
     
@@ -189,10 +204,6 @@
             p1:id="@+id/btnUndo" />
 
     </LinearLayout>
-    <EDMTDev.ZXingXamarinAndroid.ZXingScannerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/qrBOL"
-        />
+    
     
 </LinearLayout>

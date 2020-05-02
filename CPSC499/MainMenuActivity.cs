@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
-using System.Data.SqlClient;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;                                                                  
 using Android.Support.V7.App;
-using Android.Views;
 using Android.Widget;
-using Android.Support.V7.RecyclerView.Extensions;
 
 namespace CPSC499
 {
@@ -49,19 +40,10 @@ namespace CPSC499
 
             listview.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mainMenuItems);  
 
-            Toast.MakeText(ApplicationContext, "User Level: " + MainActivity.UserLevel, ToastLength.Long).Show();
-
-
             listview.ItemClick += (s, e) => {
-                var t = mainMenuItems[e.Position];
-                Android.Widget.Toast.MakeText(this, t, Android.Widget.ToastLength.Long).Show();
-
-                //Toast.MakeText(Application, ((TextView)args.View).Text, ToastLength.Short).Show();
                 if (mainMenuItems[e.Position].ToString() == "Scan Cases")
                 {
-                    // Intent intent = new Intent(this, typeof(ScanCasesActivity));
                     Intent intent = new Intent(this, typeof(ScanCasesActivity));
-
                     StartActivity(intent);
                 }
                 else if (mainMenuItems[e.Position].ToString() == "View Orders")
@@ -82,13 +64,11 @@ namespace CPSC499
                 }
                 else if (mainMenuItems[e.Position].ToString() == "Manage Barcodes")
                 {
-
                     //Edit Parsing Rules
                     Intent intent = new Intent(this, typeof(ViewBarcodeActivity));
                     StartActivity(intent);
                 }
                 else if (mainMenuItems[e.Position].ToString() == "Manage Scans") {
-
                     //Delete Scans
                     Intent intent = new Intent(this, typeof(ViewScansActivity));
                     StartActivity(intent);

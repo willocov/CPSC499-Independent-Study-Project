@@ -7,8 +7,6 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using Android.Content;
-using Android.Support.Design.Widget;
-using Xamarin.Essentials;
 
 namespace CPSC499
 {
@@ -27,9 +25,8 @@ namespace CPSC499
             private int userLevel;
 
             public void setIsSuccess(bool input) {
-
                 try
-                {
+                { 
                     isSuccess = input;
                 }
                 catch (Exception ex) {

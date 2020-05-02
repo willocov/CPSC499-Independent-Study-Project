@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.V7.App;
-using Android.Views;
 using Android.Widget;
 
 namespace CPSC499
@@ -101,7 +95,7 @@ namespace CPSC499
                             Toast.MakeText(ApplicationContext, "Success: Barcode Rule Added", ToastLength.Long).Show();
 
                         }
-                        catch (Exception ex)
+                        catch
                         {
 
                         }
@@ -114,7 +108,7 @@ namespace CPSC499
                             Toast.MakeText(ApplicationContext, "Success: Barcode Rule Updated", ToastLength.Long).Show();
 
                         }
-                        catch (Exception ex)
+                        catch
                         {
 
                         }
@@ -153,7 +147,6 @@ namespace CPSC499
                 }
             }
             catch (Exception ex) {
-                //Toast.MakeText(ApplicationContext, "Failed to Add Barcode Rule: " + ex.Message, ToastLength.Long).Show();
                 Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
                 alert.SetTitle("Specify Action");
                 alert.SetMessage(ex.Message);

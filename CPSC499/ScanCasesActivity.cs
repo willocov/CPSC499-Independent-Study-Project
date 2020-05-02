@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.App;
@@ -75,6 +71,7 @@ namespace CPSC499
             {
                 txtBOL.Text = "";
                 txtCustomer.Text = "";
+
                 BOLScanner.SetResultHandler(new MyResultHandler(this, 0));
                 BOLScanner.StartCamera();
                 BOLScanner.Visibility = Android.Views.ViewStates.Visible;
@@ -128,8 +125,18 @@ namespace CPSC499
 
         }
 
-       
-   
+        public override void OnBackPressed()
+        {
+            if (BOLScanner.Visibility == ViewStates.Visible)
+            {
+                BOLScanner.StopCamera();
+                BOLScanner.Visibility = Android.Views.ViewStates.Gone;
+            }
+            else {
+                base.OnBackPressed();
+            }
+        }
+
 
         public void ClearBarcodeFields() {
             txtBarcode.Text = "";
