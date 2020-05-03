@@ -13,6 +13,7 @@ using Android;
 using Com.Karumi.Dexter.Listener.Single;
 using Com.Karumi.Dexter.Listener;
 using Xamarin.Essentials;
+using System.Text.RegularExpressions;
 
 namespace CPSC499
 {
@@ -56,16 +57,8 @@ namespace CPSC499
             txtItemWeight = (EditText)FindViewById(Resource.Id.txtWeight);
 
             //QR Code Scanners
-
             BOLScanner = FindViewById<ZXingScannerView>(Resource.Id.qrBOL);
-            //request permission
-
-
-
-            //Make neccessary fields read only
-
-
-
+            
             //Put Object events here
             btnBOL.Click += (Sender, e) =>
             {
@@ -99,6 +92,21 @@ namespace CPSC499
                     Toast.MakeText(ApplicationContext, "Failed to Enter Barode.", ToastLength.Long).Show();
                     Vibration.Vibrate(250);
                 }
+
+                success = CheckBOLCompletion(txtBOL.Text);
+                if (success == true) {
+                    //BOL is Complete, mark as finished
+                    Android.App.AlertDialog.Builder alertDiag = new Android.App.AlertDialog.Builder(this);
+                    alertDiag.SetTitle("Order Finished");
+                    alertDiag.SetMessage("Order is Finished. Marking BOL as Complete and Closing this Order.");
+                    alertDiag.SetPositiveButton("OK", (senderAlert, args) => {
+                    
+                    });
+                    Dialog diag = alertDiag.Create();
+                    diag.Show();
+
+                    MarkBOLComplete(txtBOL.Text);
+                }
             };
             btnCancel.Click += (Sender, e) =>
             {
@@ -127,11 +135,13 @@ namespace CPSC499
 
         public override void OnBackPressed()
         {
+            //Closes camera
             if (BOLScanner.Visibility == ViewStates.Visible)
             {
                 BOLScanner.StopCamera();
                 BOLScanner.Visibility = Android.Views.ViewStates.Gone;
             }
+            //Closes Scan Cases Screen
             else {
                 base.OnBackPressed();
             }
@@ -139,7 +149,8 @@ namespace CPSC499
 
 
         public void ClearBarcodeFields() {
-            txtBarcode.Text = "";
+            //Sets all text fields to blank
+            //txtBarcode.Text = "";
             txtTotalScans.Text = "";
             txtItemNbr.Text = "";
             txtItemDate.Text = "";
@@ -187,10 +198,11 @@ namespace CPSC499
 
             public void HandleResult(ZXing.Result rawResult)
             {
+                string result = Regex.Replace(rawResult.Text, @"\t|\n|\r", "");
                 if (textBox == customerType)
                 {
-                    scanCases.txtBOL.Text = rawResult.Text;
-                    scanCases.txtCustomer.Text = scanCases.GetCustomerName(rawResult.Text);
+                    scanCases.txtBOL.Text = result;
+                    scanCases.txtCustomer.Text = scanCases.GetCustomerName(result);
                 }
                 else if (textBox == barcodeType)
                 {
@@ -214,12 +226,12 @@ namespace CPSC499
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.Add("@BOLNbr", SqlDbType.NVarChar, 250).Value = bolNbr;
                         command.Parameters.Add("@CustomerName", SqlDbType.NVarChar, 250).Direction = ParameterDirection.Output;
-                        command.Parameters["@CustomerName"].Value = null;
+                        command.Parameters["@CustomerName"].Value = "";
                         connection.Open();
                         command.ExecuteNonQuery();
+                        customerName = Convert.ToString(command.Parameters["@CustomerName"].Value);
                         connection.Close();
 
-                        customerName = Convert.ToString(command.Parameters["@CustomerName"].Value);
                     }
                 }
 
@@ -272,11 +284,76 @@ namespace CPSC499
             catch (Exception ex)
             {
                 return false;
-                throw new Exception("Failed to insert to database: " + ex);
+                throw new Exception("Failed to insert to database: " + ex.Message);
             }
 
             return true;
 
+        }
+
+        private bool CheckBOLCompletion(string BOLNbr) {
+            bool success = false;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString)) {
+                    using (SqlCommand command = new SqlCommand("isBOLComplete", connection)) {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add("@BOLNbr", SqlDbType.NVarChar).Value = BOLNbr;
+                        command.Parameters.Add("@Result", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                        command.Parameters["@Result"].Value = 0;
+
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        connection.Close();
+
+                        //Check Return value
+                        if (Convert.ToBoolean(command.Parameters["@Result"].Value) == true) {
+                            success = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) {
+                Android.App.AlertDialog.Builder alertDiag = new Android.App.AlertDialog.Builder(this);
+                alertDiag.SetTitle("Error");
+                alertDiag.SetMessage(ex.Message);
+                alertDiag.SetPositiveButton("OK", (senderAlert, args) => {
+                    alertDiag.Dispose();
+                });
+                Dialog diag = alertDiag.Create();
+                diag.Show();
+            }
+
+            return success;
+        }
+
+        private bool MarkBOLComplete(string BOLNbr) {
+            bool result = false;            
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString)) {
+                    using (SqlCommand command = new SqlCommand("MarkBOLComplete", connection)) {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add("@BOLNbr", SqlDbType.NVarChar).Value = BOLNbr;
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                }
+            }
+            catch (Exception ex) {
+                Android.App.AlertDialog.Builder alertDiag = new Android.App.AlertDialog.Builder(this);
+                alertDiag.SetTitle("Error");
+                alertDiag.SetMessage("Error Marking BOL Complete: " + ex.Message);
+                alertDiag.SetPositiveButton("OK", (senderAlert, args) => {
+                    alertDiag.Dispose();
+                });
+
+                Dialog diag = alertDiag.Create();
+                diag.Show();
+            }
+
+            return result;
         }
     }
 
