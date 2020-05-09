@@ -31,7 +31,6 @@ namespace CPSC499
 
             listview.ItemClick += (s, e) => {
                 var t = displayedInfo[e.Position];
-                Android.Widget.Toast.MakeText(this, t, Android.Widget.ToastLength.Short).Show();
                 var selected = displayedInfo[e.Position];
                 if (MainMenuActivity.isViewBOL == true)
                 {

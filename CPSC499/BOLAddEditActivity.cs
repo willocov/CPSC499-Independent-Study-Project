@@ -11,7 +11,7 @@ using Xamarin.Essentials;
 
 namespace CPSC499
 {
-    [Activity(Label = "Add/Edit Order Item")]
+    [Activity(Label = "Add Order Item")]
     public class BOLAddEditActivity : AppCompatActivity
     {
         //Variables to pass in
@@ -94,6 +94,7 @@ namespace CPSC499
                             }
                         }
 
+                        Finish();
                     }
                     else
                     {

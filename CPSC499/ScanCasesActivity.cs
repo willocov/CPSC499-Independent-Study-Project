@@ -96,23 +96,25 @@ namespace CPSC499
                 success = CheckBOLCompletion(txtBOL.Text);
                 if (success == true) {
                     //BOL is Complete, mark as finished
-                    Android.App.AlertDialog.Builder alertDiag = new Android.App.AlertDialog.Builder(this);
-                    alertDiag.SetTitle("Order Finished");
-                    alertDiag.SetMessage("Order is Finished. Marking BOL as Complete and Closing this Order.");
-                    alertDiag.SetPositiveButton("OK", (senderAlert, args) => {
-                    
+                    Android.Support.V7.App.AlertDialog.Builder alertDiag = new Android.Support.V7.App.AlertDialog.Builder(this);
+                    alertDiag.SetTitle("Finish BOL");
+                    alertDiag.SetMessage("All items in this order have been verified. Would you like to mark this order complete?");
+                    alertDiag.SetPositiveButton("Yes", (senderAlert, cargs) => {
+                        MarkBOLComplete(txtBOL.Text);
+
+                    });
+                    alertDiag.SetNegativeButton("No", (senderAlert, args) => {
+                        alertDiag.Dispose();
                     });
                     Dialog diag = alertDiag.Create();
                     diag.Show();
 
-                    MarkBOLComplete(txtBOL.Text);
                 }
             };
             btnCancel.Click += (Sender, e) =>
             {
                 ClearBarcodeFields();
             };
-
             btnUndo.Click += (Sender, e) =>
             {
                 ClearBarcodeFields();
@@ -123,14 +125,12 @@ namespace CPSC499
                 alertDiag.SetPositiveButton("Yes", (senderAlert, cargs) => {
                     Toast.MakeText(this, "Undoing Last Scan", ToastLength.Short).Show();
                 });
-                alertDiag.SetNegativeButton("Yes", (senderAlert, args) => {
+                alertDiag.SetNegativeButton("No", (senderAlert, args) => {
                     alertDiag.Dispose();
                 });
                 Dialog diag = alertDiag.Create();
                 diag.Show();
             };
-
-
         }
 
         public override void OnBackPressed()

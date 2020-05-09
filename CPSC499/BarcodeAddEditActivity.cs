@@ -93,7 +93,7 @@ namespace CPSC499
                         {
                             AddParsingRule();
                             Toast.MakeText(ApplicationContext, "Success: Barcode Rule Added", ToastLength.Long).Show();
-
+                            Finish();
                         }
                         catch
                         {

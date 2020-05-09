@@ -72,6 +72,7 @@ namespace CPSC499
                     }
                 }
                 DisplayMessage("Success", "Scan has been deleted.");
+                Finish();
             }
             catch (Exception ex) {
                 DisplayError(ex.Message);

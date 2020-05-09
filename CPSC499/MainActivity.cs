@@ -7,6 +7,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using Android.Content;
+using Xamarin.Essentials;
 
 namespace CPSC499
 {
@@ -70,7 +71,7 @@ namespace CPSC499
                 string userName = usernameTextBox.Text;
                 string password = passwordTextBox.Text;
 
-                /*
+                
                 LoginResults results = new LoginResults();
                 results = Login(userName, password);
                 
@@ -82,27 +83,21 @@ namespace CPSC499
                     UserLevel = results.getUserLevel();
                     intent.PutExtra("Myitem", UserLevel);
                     StartActivity(intent);
-
-                    //Intent intent = new Intent(this, typeof(ListViewTest));
-                    //UserLevel = results.getUserLevel();
-                    //intent.PutExtra("Myitem", UserLevel);
-                    //StartActivity(intent);
-
                 }
                 else
                 {
                     //Display error Message.
                     Toast.MakeText(ApplicationContext, "Login Failed.", ToastLength.Long).Show();
                 }
-                */
+                
 
                 //Skips user validation to speed up testing.
                 //Vibration.Vibrate();
-                Intent intent = new Intent(this, typeof(MainMenuActivity));
-                UserLevel = 3;
-                intent.PutExtra("Myitem", UserLevel);
-                StartActivity(intent);
-                StartActivity(intent);
+                //Intent intent = new Intent(this, typeof(MainMenuActivity));
+                //UserLevel = 3;
+                //intent.PutExtra("Myitem", UserLevel);
+                //StartActivity(intent);
+                //StartActivity(intent);
 
             };
         }
