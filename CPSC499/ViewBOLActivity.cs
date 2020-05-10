@@ -60,7 +60,7 @@ namespace CPSC499
             {
                 using (SqlConnection connection = new SqlConnection(DBConnection.ConnectionString))
                 {
-                    using (SqlCommand cmd = new SqlCommand("Select BOLNumber, CustomerName From BOLS", connection))
+                    using (SqlCommand cmd = new SqlCommand("Select BOLNumber, CustomerName From BOLS where isActive = 1", connection))
                     {
                         connection.Open();
                         using (SqlDataReader reader = cmd.ExecuteReader())

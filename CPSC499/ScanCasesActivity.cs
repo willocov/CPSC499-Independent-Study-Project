@@ -101,7 +101,7 @@ namespace CPSC499
                     alertDiag.SetMessage("All items in this order have been verified. Would you like to mark this order complete?");
                     alertDiag.SetPositiveButton("Yes", (senderAlert, cargs) => {
                         MarkBOLComplete(txtBOL.Text);
-
+                        ClearAllFields();
                     });
                     alertDiag.SetNegativeButton("No", (senderAlert, args) => {
                         alertDiag.Dispose();
@@ -158,6 +158,12 @@ namespace CPSC499
             txtItemWeight.Text = "";
         }
 
+        public void ClearAllFields() {
+            txtBOL.Text = "";
+            txtCustomer.Text = "";
+            ClearBarcodeFields();
+        }
+
         public void OnPermissionDenied(PermissionDeniedResponse p0)
         {
         }
@@ -207,6 +213,7 @@ namespace CPSC499
                 else if (textBox == barcodeType)
                 {
                     scanCases.txtBarcode.Text = rawResult.Text;
+                    scanCases.ClearBarcodeFields();
                 }
                 scanCases.BOLScanner.StopCamera();
                 scanCases.BOLScanner.Visibility = Android.Views.ViewStates.Gone;

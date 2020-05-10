@@ -36,8 +36,6 @@ namespace CPSC499
                 intent.PutExtra("MyItem", SelectedScanID);
 
                 StartActivity(intent);
-
-                
             };
 
         }
